@@ -2,9 +2,20 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <isExposed>true</isExposed>
-
+    <masterLabel>Banner</masterLabel>
     <targets>
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="showTitle" type="Boolean" label="Show Title" default="true"/>
+            <property name="title" type="String" label="Title"/>
+            <property name="showSubtitle" type="Boolean" label="Show Subtitle" default="true"/>
+            <property name="subtitle" type="String" label="Subtitle"/>
+            <property name="backgroundColor" type="Color" label="Background color"/>
+            <property name="showBackgroundImage" type="Boolean" label="Show background image" default="true"/>
+            <property name="backgroundImage" type="ContentReference" label="Background image from CMS" filter="cms_image"/>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

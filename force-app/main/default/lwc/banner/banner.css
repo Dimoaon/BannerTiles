@@ -1,3 +1,47 @@
 .banner {
+
     width: 100%;
+    min-height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+}
+
+.banner-content {
+
+    max-width: 900px;
+    text-align: center;
+
+}
+
+.banner-title {
+
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+
+}
+
+.banner-subtitle {
+
+    font-size: 18px;
+    opacity: 0.9;
+
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .banner {
+
+        padding: 30px 16px;
+        min-height: 220px;
+
+    }
+
 }
