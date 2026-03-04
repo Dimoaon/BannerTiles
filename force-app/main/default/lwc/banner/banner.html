@@ -1,17 +1,19 @@
 <template>
     <div class="banner" style={bannerStyle}>
         <div class="banner-content">
+
             <template lwc:if={getShowTitle}>
-                <div class="banner-title">
+                <div class="banner-title" style={titleStyle}>
                     {title}
                 </div>
             </template>
 
             <template lwc:if={getShowSubtitle}>
-                <div class="banner-subtitle">
+                <div class="banner-subtitle" style={subtitleStyle}>
                     {subtitle}
                 </div>
             </template>
+            
         </div>
     </div>
 </template>

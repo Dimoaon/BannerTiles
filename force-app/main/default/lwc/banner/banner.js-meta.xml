@@ -10,8 +10,12 @@
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
             <property name="showTitle" type="Boolean" label="Show Title" default="true"/>
+            <property name="titleColor" type="Color" label="Title color" default="#000000"/>
+            <property name="titleFontSize" type="String" label="Title font size (e.g. 24px)" default="24px"/>
             <property name="title" type="String" label="Title"/>
             <property name="showSubtitle" type="Boolean" label="Show Subtitle" default="true"/>
+            <property name="subtitleColor" type="Color" label="Subtitle color" default="#000000"/>
+            <property name="subtitleFontSize" type="String" label="Subtitle font size (e.g. 16px)" default="16px"/>
             <property name="subtitle" type="String" label="Subtitle"/>
             <property name="backgroundColor" type="Color" label="Background color"/>
             <property name="showBackgroundImage" type="Boolean" label="Show background image" default="true"/>

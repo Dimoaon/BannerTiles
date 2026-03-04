@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
-    <isExposed>false</isExposed>
+    <isExposed>true</isExposed>
+    <masterLabel>Tiles</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="showTile1" type="Boolean" label="Show tile 1" default="true"/>
+            <property name="tile1ShowTitle" type="Boolean" label="Show  title"/>
+            <property name="tile1Title" type="String" label="Tile 1 title"/>
+            <property name="tile1ShowDescription" type="Boolean" label="Show description"/>
+            <property name="tile1Description" type="String" label="Tile 1 description"/>
+            <property name="tile1ShowImage" type="Boolean" label="Show image" default="true"/>
+            <property name="tile1Image" type="ContentReference" label="Tile 1 image" filter="cms_image"/>
+            <property name="tile1BackgroundColor" type="Color" label="Tile 1 background color"/>
+            <property name="tile1LinkUrl" type="String" label="Tile 1 link URL"/>
+            <property name="tile1OpenInNewTab" type="Boolean" label="Open in new tab"/>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

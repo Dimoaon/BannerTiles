@@ -1,3 +1,33 @@
 <template>
-    
+    <div class="tiles-container">
+
+        <div class="tiles-grid">
+
+            <template lwc:if={showTile1}>
+                <div class="tile" style={tile1Style} onclick={handleTile1Click}>
+                    <div class="tile-content">
+
+                        <template lwc:if={showTile1Image}>
+                            <div class="tile-image" style={tile1ImageStyle}></div>
+                        </template>
+
+                        <template lwc:if={showTile1Title}>
+                            <div class="tile-title">
+                                {tile1Title}
+                            </div>
+                        </template>
+
+                        <template lwc:if={showTile1Description}>
+                            <div class="tile-description">
+                                {tile1Description}
+                            </div>
+                        </template>
+
+                    </div>
+                </div>
+            </template>
+
+        </div>
+
+    </div>
 </template>

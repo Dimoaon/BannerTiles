@@ -16,8 +16,15 @@ export default class Banner extends LightningElement {
 
     @api communityBasePath;
 
-    cmsLink(cmsId) {
+    @api titleColor = null;
+    @api subtitleColor = null;
 
+    @api titleFontSize = null;
+    @api subtitleFontSize = null;
+
+    /* CMS HELPER */
+
+    cmsLink(cmsId) {
         if (!cmsId || typeof cmsId !== 'string' || !cmsId.trim()) {
             return null;
         }
@@ -33,16 +40,18 @@ export default class Banner extends LightningElement {
         return link;
     }
 
+    /* IMAGE URL */
+
     get backgroundImageUrl() {
         return this.cmsLink(this.backgroundImage);
     }
 
-    get bannerStyle() {
+    /* BANNER STYLE */
 
+    get bannerStyle() {
         let style = `background-color:${this.backgroundColor || '#f4f6f9'};`;
 
         if (this.showBackgroundImage && this.backgroundImageUrl) {
-
             style += `
                 background-image:url('${this.backgroundImageUrl}');
                 background-size:cover;
@@ -54,12 +63,30 @@ export default class Banner extends LightningElement {
         return style;
     }
 
+    /* VISIBILITY GETTERS */
+
     get getShowTitle() {
         return this.showTitle === true && this.title;
     }
 
     get getShowSubtitle() {
         return this.showSubtitle === true && this.subtitle;
+    }
+
+    /* TEXT STYLE */
+
+    get titleStyle() {
+        return `
+            color:${this.titleColor || '#000'};
+            font-size:${this.titleFontSize || '24px'};
+        `;
+    }
+
+    get subtitleStyle() {
+        return `
+            color:${this.subtitleColor || '#000'};
+            font-size:${this.subtitleFontSize || '16px'};
+        `;
     }
 
 }
