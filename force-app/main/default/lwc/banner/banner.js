@@ -1,4 +1,5 @@
 import { LightningElement, api } from 'lwc';
+import communityBasePath from '@salesforce/community/basePath';
 
 export default class Banner extends LightningElement {
 
@@ -9,12 +10,48 @@ export default class Banner extends LightningElement {
     @api showSubtitle = false;
 
     @api backgroundColor = null;
-    
+
     @api backgroundImage = null;
     @api showBackgroundImage = false;
 
+    @api communityBasePath;
+
+    cmsLink(cmsId) {
+
+        if (!cmsId || typeof cmsId !== 'string' || !cmsId.trim()) {
+            return null;
+        }
+
+        const base = this.communityBasePath || window.location.origin;
+
+        let link = `${base}/sfsites/c/cms/delivery/media/${cmsId}`;
+
+        if (link.includes('/login/')) {
+            link = link.replace('/login/', '/');
+        }
+
+        return link;
+    }
+
+    get backgroundImageUrl() {
+        return this.cmsLink(this.backgroundImage);
+    }
+
     get bannerStyle() {
-        return `background-color:${this.backgroundColor || '#f4f6f9'};`;
+
+        let style = `background-color:${this.backgroundColor || '#f4f6f9'};`;
+
+        if (this.showBackgroundImage && this.backgroundImageUrl) {
+
+            style += `
+                background-image:url('${this.backgroundImageUrl}');
+                background-size:cover;
+                background-position:center;
+                background-repeat:no-repeat;
+            `;
+        }
+
+        return style;
     }
 
     get getShowTitle() {

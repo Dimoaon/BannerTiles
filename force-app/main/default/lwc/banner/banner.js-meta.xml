@@ -16,6 +16,7 @@
             <property name="backgroundColor" type="Color" label="Background color"/>
             <property name="showBackgroundImage" type="Boolean" label="Show background image" default="true"/>
             <property name="backgroundImage" type="ContentReference" label="Background image from CMS" filter="cms_image"/>
+            <property name="communityBasePath" type="String" label="Community base path (optional)"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
