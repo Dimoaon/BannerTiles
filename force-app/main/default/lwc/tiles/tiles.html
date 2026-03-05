@@ -1,28 +1,30 @@
 <template>
     <div class="tiles-container">
-
         <div class="tiles-grid">
+            <template for:each={tiles} for:item="tile">
 
-            <template lwc:if={showTile1}>
-                <div class={tile1Class} style={tile1Style} onclick={handleTile1Click}>
-                    <div class="tile-image" style={tile1ImageStyle}>                        
+                <template lwc:if={tile.show}>
+                    <div key={tile.index} class={tile.class} style={tile.style} onclick={tile.click}>
+
+                        <div class="tile-image" style={tile.imageStyle}>
+                        </div>
+
+                        <template lwc:if={tile.showTitle}>
+                            <div class="tile-title">
+                                {tile.title}
+                            </div>
+                        </template>
+
+                        <template lwc:if={tile.showDescription}>
+                            <div class="tile-description">
+                                {tile.description}
+                            </div>
+                        </template>
+
                     </div>
+                </template>
 
-                    <template lwc:if={showTile1Title}>
-                        <div class="tile-title">
-                            {tile1Title}
-                        </div>
-                    </template>
-
-                    <template lwc:if={showTile1Description}>
-                        <div class="tile-description">
-                            {tile1Description}
-                        </div>
-                    </template>
-                </div>
             </template>
-
         </div>
-
     </div>
 </template>

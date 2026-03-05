@@ -1,24 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>65.0</apiVersion>
-    <isExposed>true</isExposed>
-    <masterLabel>Tiles</masterLabel>
-    <targets>
-        <target>lightningCommunity__Page</target>
-        <target>lightningCommunity__Default</target>
-    </targets>
-    <targetConfigs>
-        <targetConfig targets="lightningCommunity__Default">
-            <property name="showTile1" type="Boolean" label="Show tile 1" default="true"/>
-            <property name="tile1ShowTitle" type="Boolean" label="Show  title"/>
-            <property name="tile1Title" type="String" label="Tile 1 title"/>
-            <property name="tile1ShowDescription" type="Boolean" label="Show description"/>
-            <property name="tile1Description" type="String" label="Tile 1 description"/>
-            <property name="tile1BackgroundColor" type="Color" label="Tile 1 background color"/>
-            <property name="tile1ShowImage" type="Boolean" label="Show image" default="true"/>
-            <property name="tile1Image" type="ContentReference" label="Tile 1 image" filter="cms_image"/>
-            <property name="tile1LinkUrl" type="String" label="Tile 1 link URL"/>
-            <property name="tile1OpenInNewTab" type="Boolean" label="Open in new tab"/>
-        </targetConfig>
-    </targetConfigs>
+	<apiVersion>65.0</apiVersion>
+	<isExposed>true</isExposed>
+	<masterLabel>Tiles</masterLabel>
+	<targets>
+		<target>lightningCommunity__Page</target>
+		<target>lightningCommunity__Default</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightningCommunity__Default">
+
+			<property name="showTile1" type="Boolean" label="Show tile 1" default="true"/>
+			<property name="tile1ShowTitle" type="Boolean" label="Show title"/>
+			<property name="tile1Title" type="String" label="Tile 1 title"/>
+			<property name="tile1ShowDescription" type="Boolean" label="Show description"/>
+			<property name="tile1Description" type="String" label="Tile 1 description"/>
+			<property name="tile1BackgroundColor" type="Color" label="Tile 1 background color"/>
+			<property name="tile1ShowImage" type="Boolean" label="Show image" default="true"/>
+			<property name="tile1Image" type="ContentReference" label="Tile 1 image" filter="cms_image"/>
+			<property name="tile1LinkUrl" type="String" label="Tile 1 link URL"/>
+			<property name="tile1OpenInNewTab" type="Boolean" label="Open in new tab"/>
+
+			<property name="showTile2" type="Boolean" label="Show tile 2" default="true"/>
+			<property name="tile2ShowTitle" type="Boolean" label="Show title"/>
+			<property name="tile2Title" type="String" label="Tile 2 title"/>
+			<property name="tile2ShowDescription" type="Boolean" label="Show description"/>
+			<property name="tile2Description" type="String" label="Tile 2 description"/>
+			<property name="tile2BackgroundColor" type="Color" label="Tile 2 background color"/>
+			<property name="tile2ShowImage" type="Boolean" label="Show image" default="true"/>
+			<property name="tile2Image" type="ContentReference" label="Tile 2 image" filter="cms_image"/>
+			<property name="tile2LinkUrl" type="String" label="Tile 2 link URL"/>
+			<property name="tile2OpenInNewTab" type="Boolean" label="Open in new tab"/>
+
+			<property name="showTile3" type="Boolean" label="Show tile 3" default="true"/>
+			<property name="tile3ShowTitle" type="Boolean" label="Show title"/>
+			<property name="tile3Title" type="String" label="Tile 3 title"/>
+			<property name="tile3ShowDescription" type="Boolean" label="Show description"/>
+			<property name="tile3Description" type="String" label="Tile 3 description"/>
+			<property name="tile3BackgroundColor" type="Color" label="Tile 3 background color"/>
+			<property name="tile3ShowImage" type="Boolean" label="Show image" default="true"/>
+			<property name="tile3Image" type="ContentReference" label="Tile 3 image" filter="cms_image"/>
+			<property name="tile3LinkUrl" type="String" label="Tile 3 link URL"/>
+			<property name="tile3OpenInNewTab" type="Boolean" label="Open in new tab"/>
+
+			<property name="showTile4" type="Boolean" label="Show tile 4" default="true"/>
+			<property name="tile4ShowTitle" type="Boolean" label="Show title"/>
+			<property name="tile4Title" type="String" label="Tile 4 title"/>
+			<property name="tile4ShowDescription" type="Boolean" label="Show description"/>
+			<property name="tile4Description" type="String" label="Tile 4 description"/>
+			<property name="tile4BackgroundColor" type="Color" label="Tile 4 background color"/>
+			<property name="tile4ShowImage" type="Boolean" label="Show image" default="true"/>
+			<property name="tile4Image" type="ContentReference" label="Tile 4 image" filter="cms_image"/>
+			<property name="tile4LinkUrl" type="String" label="Tile 4 link URL"/>
+			<property name="tile4OpenInNewTab" type="Boolean" label="Open in new tab"/>
+
+			<property name="showTile5" type="Boolean" label="Show tile 5" default="true"/>
+			<property name="tile5ShowTitle" type="Boolean" label="Show title"/>
+			<property name="tile5Title" type="String" label="Tile 5 title"/>
+			<property name="tile5ShowDescription" type="Boolean" label="Show description"/>
+			<property name="tile5Description" type="String" label="Tile 5 description"/>
+			<property name="tile5BackgroundColor" type="Color" label="Tile 5 background color"/>
+			<property name="tile5ShowImage" type="Boolean" label="Show image" default="true"/>
+			<property name="tile5Image" type="ContentReference" label="Tile 5 image" filter="cms_image"/>
+			<property name="tile5LinkUrl" type="String" label="Tile 5 link URL"/>
+			<property name="tile5OpenInNewTab" type="Boolean" label="Open in new tab"/>
+
+			<property name="showTile6" type="Boolean" label="Show tile 6" default="true"/>
+			<property name="tile6ShowTitle" type="Boolean" label="Show title"/>
+			<property name="tile6Title" type="String" label="Tile 6 title"/>
+			<property name="tile6ShowDescription" type="Boolean" label="Show description"/>
+			<property name="tile6Description" type="String" label="Tile 6 description"/>
+			<property name="tile6BackgroundColor" type="Color" label="Tile 6 background color"/>
+			<property name="tile6ShowImage" type="Boolean" label="Show image" default="true"/>
+			<property name="tile6Image" type="ContentReference" label="Tile 6 image" filter="cms_image"/>
+			<property name="tile6LinkUrl" type="String" label="Tile 6 link URL"/>
+			<property name="tile6OpenInNewTab" type="Boolean" label="Open in new tab"/>
+
+		</targetConfig>
+	</targetConfigs>
 </LightningComponentBundle>
