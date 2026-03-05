@@ -60,7 +60,6 @@ export default class Tiles extends LightningElement {
                 background-size:cover;
                 background-position:center;
                 background-repeat:no-repeat;
-                height:180px;
             `;
         }
 
@@ -77,8 +76,12 @@ export default class Tiles extends LightningElement {
         return this.tile1ShowDescription === true && this.tile1Description;
     }
 
-    get showTile1Image() {
-        return this.tile1ShowImage === true && this.tile1ImageUrl;
+    get tile1Class() {
+        if (this.tile1LinkUrl) {
+            return 'tile tile-clickable';
+        }
+        
+        return 'tile';
     }
 
     /* CLICK HANDLER */
