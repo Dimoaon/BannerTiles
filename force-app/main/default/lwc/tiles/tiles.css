@@ -25,6 +25,11 @@
     height: 100%;
 }
 
+.tile:focus {
+    outline: 3px solid #1b96ff;
+    outline-offset: 2px;
+}
+
 /* CLICKABLE */
 
 .tile-clickable {

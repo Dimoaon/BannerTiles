@@ -135,6 +135,13 @@ export default class Tiles extends LightningElement {
         }
     }
 
+    keydown(event, linkUrl, openInNewTab) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.navigate(linkUrl, openInNewTab);
+        }
+    }
+
 
     /* TILES ARRAY FOR TEMPLATE */
 
@@ -241,7 +248,8 @@ export default class Tiles extends LightningElement {
             imageStyle: this.getTileImageStyle(showImage, imageUrl, backgroundColor),
             class: linkUrl ? 'tile tile-clickable' : 'tile',
             style: '',
-            click: () => this.navigate(linkUrl, openInNewTab)
+            click: () => this.navigate(linkUrl, openInNewTab),
+            keydown: (event) => this.keydown(event, linkUrl, openInNewTab)
         };
     }
 

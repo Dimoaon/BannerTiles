@@ -4,7 +4,7 @@
             <template for:each={tiles} for:item="tile">
 
                 <template lwc:if={tile.show}>
-                    <div key={tile.index} class={tile.class} style={tile.style} onclick={tile.click}>
+                    <div key={tile.index} class={tile.class} style={tile.style} onclick={tile.click} onkeydown={tile.keydown} tabindex="0" role="link" aria-label="Open the link">
 
                         <div class="tile-image" style={tile.imageStyle}>
                         </div>
