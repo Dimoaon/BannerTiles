@@ -2,7 +2,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-
 }
 
 /* GRID */
@@ -11,6 +10,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    grid-auto-rows: 1fr;
 }
 
 /* TILE */
@@ -50,12 +50,15 @@
     font-size: 18px;
     font-weight: 600;
     padding: 16px 16px 8px 16px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .tile-description {
     font-size: 14px;
-    line-height: 1.5;
     padding: 0 16px 16px 16px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 /* TABLET */
