@@ -1,7 +1,8 @@
 .tiles-container {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 2.5rem 1.25rem;
+    
+    max-width: 75rem;
 }
 
 /* GRID */
@@ -9,60 +10,71 @@
 .tiles-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+
+    gap: 1.5rem;
+
     grid-auto-rows: 1fr;
 }
 
 /* TILE */
 
 .tile {
-    border-radius: 8px;
-    overflow: hidden;
-    background: #ffffff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
+    
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-radius: 0.5rem;
+    
+    overflow: hidden;
+    
     height: 100%;
 }
 
 .tile:focus {
-    outline: 3px solid #1b96ff;
-    outline-offset: 2px;
+    outline: 0.1875rem solid #1b96ff;
+    outline-offset: 0.125rem;
 }
 
 /* CLICKABLE */
 
 .tile-clickable {
     cursor: pointer;
+
     transition: all 0.2s ease;
 }
 
 .tile-clickable:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-0.25rem);
+
+    box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.15);
 }
 
 /* IMAGE */
 
 .tile-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     width: 100%;
-    height: 180px;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+    height: 11.25rem;
 }
 
 /* TEXT */
 
 .tile-title {
-    font-weight: 600;
-    padding: 16px 16px 8px 16px;
+    padding: 1rem 1rem 0.5rem 1rem;
+    
     word-break: break-word;
     overflow-wrap: anywhere;
+    
+    font-weight: 600;
 }
 
 .tile-description {
-    padding: 0 16px 16px 16px;
+    padding: 0 1rem 1rem 1rem;
+
     word-break: break-word;
     overflow-wrap: anywhere;
 }
@@ -70,6 +82,7 @@
 /* TABLET */
 
 @media (max-width: 1024px) {
+
     .tiles-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -81,10 +94,13 @@
     .tile-description {
         font-size: 0.875rem;
     }
+
 }
 
 /* MOBILE */
+
 @media (max-width: 768px) {
+
     .tiles-grid {
         grid-template-columns: 1fr;
     }
@@ -96,4 +112,5 @@
     .tile-description {
         font-size: 0.75rem;
     }
+
 }

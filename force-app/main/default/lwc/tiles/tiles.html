@@ -7,13 +7,13 @@
 
                 <template lwc:if={tile.show}>
 
-                    <div key={tile.index}
+                    <div key={tile.id}
                          class={tile.class}
                          onclick={tile.click}
                          onkeydown={tile.keydown}
                          tabindex="0"
                          role="link"
-                         aria-label="Open the link">
+                         aria-label={tile.ariaLabel}>
 
                         <div class={tile.imageClass}></div>
 

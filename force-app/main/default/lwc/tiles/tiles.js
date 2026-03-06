@@ -1,7 +1,15 @@
 import { LightningElement, api } from 'lwc';
 import communityBasePath from '@salesforce/community/basePath';
 
+const LABELS = {
+    openLink: 'Open the link'
+};
+
+const TILES_COUNT = 6;
+
 export default class Tiles extends LightningElement {
+
+    LABELS = LABELS;
 
     /* VARIABLES */
 
@@ -97,81 +105,32 @@ export default class Tiles extends LightningElement {
     /* INTERNAL VARIABLES */
 
     isFirstRender = true;
+    tileIds = this.createTileIds();
 
 
     /* GETTERS */
 
     get tiles() {
+        const tiles = [];
 
-        return [
-            this.createTile(
-                1,
-                this.showTile1,
-                this.tile1ShowTitle,
-                this.tile1Title,
-                this.tile1ShowDescription,
-                this.tile1Description,
-                this.tile1LinkUrl,
-                this.tile1OpenInNewTab
-            ),
+        for (let index = 0; index < TILES_COUNT; index++) {
+            const tileNumber = index + 1;
 
-            this.createTile(
-                2,
-                this.showTile2,
-                this.tile2ShowTitle,
-                this.tile2Title,
-                this.tile2ShowDescription,
-                this.tile2Description,
-                this.tile2LinkUrl,
-                this.tile2OpenInNewTab
-            ),
+            tiles.push(
+                this.createTile(
+                    this.tileIds[index],
+                    this[`showTile${tileNumber}`],
+                    this[`tile${tileNumber}ShowTitle`],
+                    this[`tile${tileNumber}Title`],
+                    this[`tile${tileNumber}ShowDescription`],
+                    this[`tile${tileNumber}Description`],
+                    this[`tile${tileNumber}LinkUrl`],
+                    this[`tile${tileNumber}OpenInNewTab`]
+                )
+            );
+        }
 
-            this.createTile(
-                3,
-                this.showTile3,
-                this.tile3ShowTitle,
-                this.tile3Title,
-                this.tile3ShowDescription,
-                this.tile3Description,
-                this.tile3LinkUrl,
-                this.tile3OpenInNewTab
-            ),
-
-            this.createTile(
-                4,
-                this.showTile4,
-                this.tile4ShowTitle,
-                this.tile4Title,
-                this.tile4ShowDescription,
-                this.tile4Description,
-                this.tile4LinkUrl,
-                this.tile4OpenInNewTab
-            ),
-
-            this.createTile(
-                5,
-                this.showTile5,
-                this.tile5ShowTitle,
-                this.tile5Title,
-                this.tile5ShowDescription,
-                this.tile5Description,
-                this.tile5LinkUrl,
-                this.tile5OpenInNewTab
-            ),
-
-            this.createTile(
-                6,
-                this.showTile6,
-                this.tile6ShowTitle,
-                this.tile6Title,
-                this.tile6ShowDescription,
-                this.tile6Description,
-                this.tile6LinkUrl,
-                this.tile6OpenInNewTab
-            )
-
-        ];
-
+        return tiles;
     }
 
 
@@ -192,12 +151,12 @@ export default class Tiles extends LightningElement {
         let customCssStyles = '';
 
         const tilesConfig = [
-            { index: 1, showImage: this.tile1ShowImage, image: this.tile1Image, color: this.tile1BackgroundColor },
-            { index: 2, showImage: this.tile2ShowImage, image: this.tile2Image, color: this.tile2BackgroundColor },
-            { index: 3, showImage: this.tile3ShowImage, image: this.tile3Image, color: this.tile3BackgroundColor },
-            { index: 4, showImage: this.tile4ShowImage, image: this.tile4Image, color: this.tile4BackgroundColor },
-            { index: 5, showImage: this.tile5ShowImage, image: this.tile5Image, color: this.tile5BackgroundColor },
-            { index: 6, showImage: this.tile6ShowImage, image: this.tile6Image, color: this.tile6BackgroundColor }
+            { id: this.tileIds[0], showImage: this.tile1ShowImage, image: this.tile1Image, color: this.tile1BackgroundColor },
+            { id: this.tileIds[1], showImage: this.tile2ShowImage, image: this.tile2Image, color: this.tile2BackgroundColor },
+            { id: this.tileIds[2], showImage: this.tile3ShowImage, image: this.tile3Image, color: this.tile3BackgroundColor },
+            { id: this.tileIds[3], showImage: this.tile4ShowImage, image: this.tile4Image, color: this.tile4BackgroundColor },
+            { id: this.tileIds[4], showImage: this.tile5ShowImage, image: this.tile5Image, color: this.tile5BackgroundColor },
+            { id: this.tileIds[5], showImage: this.tile6ShowImage, image: this.tile6Image, color: this.tile6BackgroundColor }
         ];
 
         tilesConfig.forEach(tile => {
@@ -211,7 +170,7 @@ export default class Tiles extends LightningElement {
             }
 
             customCssStyles += `
-                .tile-image-${tile.index} {
+                .tile-image-${tile.id} {
                     ${background}
                 }
                     
@@ -260,17 +219,18 @@ export default class Tiles extends LightningElement {
 
     /* MAIN METHODS */
 
-    createTile(index, show, showTitle, title, showDescription, description, linkUrl, openInNewTab) {
+    createTile(id, show, showTitle, title, showDescription, description, linkUrl, openInNewTab) {
 
         return {
-            index,
+            id,
             show,
             title,
             description,
             showTitle: showTitle && title,
             showDescription: showDescription && description,
             class: linkUrl ? 'tile tile-clickable' : 'tile',
-            imageClass: `tile-image tile-image-${index}`,
+            imageClass: `tile-image tile-image-${id}`,
+            ariaLabel: title ? `${this.LABELS.openLink}: ${title}` : this.LABELS.openLink,
             click: () => this.navigate(linkUrl, openInNewTab),
             keydown: (event) => this.keydown(event, linkUrl, openInNewTab)
         };
@@ -291,6 +251,20 @@ export default class Tiles extends LightningElement {
         }
 
         return link;
+    }
+
+    createTileIds() {
+        const tileIds = [];
+
+        for (let index = 0; index < TILES_COUNT; index++) {
+            tileIds.push(this.generateId());
+        }
+
+        return tileIds;
+    }
+
+    generateId() {
+        return 'tile-' + Math.random().toString(36).substring(2, 9);
     }
 
 }

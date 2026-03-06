@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api,track } from 'lwc';
 import communityBasePath from '@salesforce/community/basePath';
 
 export default class Banner extends LightningElement {
@@ -24,7 +24,7 @@ export default class Banner extends LightningElement {
     @api titleFontSize = null;
     @api subtitleFontSize = null;
 
-    isFirstRender = true;
+    @track isFirstRender = true;
 
 
     /* GETTERS */
