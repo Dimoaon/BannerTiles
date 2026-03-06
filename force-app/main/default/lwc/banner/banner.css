@@ -7,29 +7,29 @@
     overflow-x: hidden;
     overflow-y: hidden;
     padding: 40px 20px;
-    text-shadow:
-    -1px -1px 0 black,
-     1px -1px 0 black,
-    -1px  1px 0 black,
-     1px  1px 0 black;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
 .banner-content {
     max-width: 1200px;
     width: 100%;
     text-align: left;
-    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .banner-title {
-    max-width: 900px;
+    max-width: 1160px;
     width: 100%;
     font-weight: 700;
     margin-bottom: 12px;
 }
 
 .banner-subtitle {
-    max-width: 900px;
+    max-width: 1160px;
     width: 100%;
 }
 
@@ -39,15 +39,35 @@
     overflow-wrap: anywhere;
 }
 
-/* Mobile */
+/* TABLET */
 
-@media (max-width: 768px) {
-
+@media (max-width: 1024px) {
     .banner {
-
-        padding: 30px 16px;
-        min-height: 220px;
-
+        min-height: 240px;
+        padding: 30px 20px;
     }
 
+    .banner-title {
+        font-size: 1.7rem;
+    }
+
+    .banner-subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    .banner {
+        min-height: 220px;
+    }
+
+    .banner-title {
+        font-size: 1.5rem;
+    }
+
+    .banner-subtitle {
+        font-size: 1rem;
+    }
 }

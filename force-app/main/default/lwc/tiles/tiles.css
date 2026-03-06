@@ -47,12 +47,14 @@
 .tile-image {
     width: 100%;
     height: 180px;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
 /* TEXT */
 
 .tile-title {
-    font-size: 18px;
     font-weight: 600;
     padding: 16px 16px 8px 16px;
     word-break: break-word;
@@ -60,7 +62,6 @@
 }
 
 .tile-description {
-    font-size: 14px;
     padding: 0 16px 16px 16px;
     word-break: break-word;
     overflow-wrap: anywhere;
@@ -72,11 +73,27 @@
     .tiles-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .tile-title {
+        font-size: 1rem;
+    }
+
+    .tile-description {
+        font-size: 0.875rem;
+    }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
     .tiles-grid {
         grid-template-columns: 1fr;
+    }
+
+    .tile-title {
+        font-size: 0.875rem;
+    }
+
+    .tile-description {
+        font-size: 0.75rem;
     }
 }

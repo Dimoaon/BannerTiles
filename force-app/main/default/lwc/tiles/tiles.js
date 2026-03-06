@@ -3,6 +3,8 @@ import communityBasePath from '@salesforce/community/basePath';
 
 export default class Tiles extends LightningElement {
 
+    /* VARIABLES */
+
     @api communityBasePath;
 
     /* TILE 1 */
@@ -83,45 +85,157 @@ export default class Tiles extends LightningElement {
     @api tile6LinkUrl = null;
     @api tile6OpenInNewTab = false;
 
+    /* COMMON */
 
-    /* CMS HELPER */
+    @api titleColor = null;
+    @api titleFontSize = null;
 
-    cmsLink(cmsId) {
-        if (!cmsId || typeof cmsId !== 'string' || !cmsId.trim()) {
-            return null;
-        }
+    @api descriptionColor = null;
+    @api descriptionFontSize = null;
 
-        const base = this.communityBasePath || window.location.origin;
 
-        let link = `${base}/sfsites/c/cms/delivery/media/${cmsId}`;
+    /* INTERNAL VARIABLES */
 
-        if (link.includes('/login/')) {
-            link = link.replace('/login/', '/');
-        }
+    isFirstRender = true;
 
-        return link;
+
+    /* GETTERS */
+
+    get tiles() {
+
+        return [
+            this.createTile(
+                1,
+                this.showTile1,
+                this.tile1ShowTitle,
+                this.tile1Title,
+                this.tile1ShowDescription,
+                this.tile1Description,
+                this.tile1LinkUrl,
+                this.tile1OpenInNewTab
+            ),
+
+            this.createTile(
+                2,
+                this.showTile2,
+                this.tile2ShowTitle,
+                this.tile2Title,
+                this.tile2ShowDescription,
+                this.tile2Description,
+                this.tile2LinkUrl,
+                this.tile2OpenInNewTab
+            ),
+
+            this.createTile(
+                3,
+                this.showTile3,
+                this.tile3ShowTitle,
+                this.tile3Title,
+                this.tile3ShowDescription,
+                this.tile3Description,
+                this.tile3LinkUrl,
+                this.tile3OpenInNewTab
+            ),
+
+            this.createTile(
+                4,
+                this.showTile4,
+                this.tile4ShowTitle,
+                this.tile4Title,
+                this.tile4ShowDescription,
+                this.tile4Description,
+                this.tile4LinkUrl,
+                this.tile4OpenInNewTab
+            ),
+
+            this.createTile(
+                5,
+                this.showTile5,
+                this.tile5ShowTitle,
+                this.tile5Title,
+                this.tile5ShowDescription,
+                this.tile5Description,
+                this.tile5LinkUrl,
+                this.tile5OpenInNewTab
+            ),
+
+            this.createTile(
+                6,
+                this.showTile6,
+                this.tile6ShowTitle,
+                this.tile6Title,
+                this.tile6ShowDescription,
+                this.tile6Description,
+                this.tile6LinkUrl,
+                this.tile6OpenInNewTab
+            )
+
+        ];
+
     }
 
 
-    /* STYLE HELPER */
+    /* LIFECYCLES */
 
-    getTileImageStyle(showImage, imageUrl, backgroundColor) {
-        let style = `background-color:${backgroundColor || '#f4f6f9'};`;
+    renderedCallback() {
+        if (this.isFirstRender) {
+            this.isFirstRender = false;
+            this.addCustomCssStyles();
+        }
+    }
 
-        if (showImage && imageUrl) {
-            style += `
-                background-image:url('${imageUrl}');
-                background-size:cover;
-                background-position:center;
-                background-repeat:no-repeat;
+
+    /* INIT METHODS */
+
+    addCustomCssStyles() {
+        const style = document.createElement('style');
+        let customCssStyles = '';
+
+        const tilesConfig = [
+            { index: 1, showImage: this.tile1ShowImage, image: this.tile1Image, color: this.tile1BackgroundColor },
+            { index: 2, showImage: this.tile2ShowImage, image: this.tile2Image, color: this.tile2BackgroundColor },
+            { index: 3, showImage: this.tile3ShowImage, image: this.tile3Image, color: this.tile3BackgroundColor },
+            { index: 4, showImage: this.tile4ShowImage, image: this.tile4Image, color: this.tile4BackgroundColor },
+            { index: 5, showImage: this.tile5ShowImage, image: this.tile5Image, color: this.tile5BackgroundColor },
+            { index: 6, showImage: this.tile6ShowImage, image: this.tile6Image, color: this.tile6BackgroundColor }
+        ];
+
+        tilesConfig.forEach(tile => {
+            const imageUrl = this.cmsLink(tile.image);
+            let background = `background-color:${tile.color || '#f4f6f9'};`;
+
+            if (tile.showImage && imageUrl) {
+                background += `
+                    background-image:url('${imageUrl}');
+                `;
+            }
+
+            customCssStyles += `
+                .tile-image-${tile.index} {
+                    ${background}
+                }
+                    
+                .tile-title {
+                    color: ${this.titleColor || '#000'};
+                    font-size: ${this.titleFontSize || '1.125rem'};
+                }
+
+                .tile-description {
+                    color: ${this.descriptionColor || '#000'};
+                    font-size: ${this.descriptionFontSize || '0.875rem'};
+                }
             `;
-        }
+        });
 
-        return style;
+        style.innerText = customCssStyles.replace(/ +(?= )|\n/g, '');
+
+        this.template
+            .querySelector('.custom-css-container')
+            .appendChild(style);
     }
 
 
-    /* NAVIGATION */
+    /* HANDLERS */
 
     navigate(url, newTab) {
         if (!url) {
@@ -135,6 +249,7 @@ export default class Tiles extends LightningElement {
         }
     }
 
+
     keydown(event, linkUrl, openInNewTab) {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
@@ -143,100 +258,9 @@ export default class Tiles extends LightningElement {
     }
 
 
-    /* TILES ARRAY FOR TEMPLATE */
+    /* MAIN METHODS */
 
-    get tiles() {
-
-        return [
-            this.createTile(
-                1,
-                this.showTile1,
-                this.tile1ShowTitle,
-                this.tile1Title,
-                this.tile1ShowDescription,
-                this.tile1Description,
-                this.tile1ShowImage,
-                this.tile1Image,
-                this.tile1BackgroundColor,
-                this.tile1LinkUrl,
-                this.tile1OpenInNewTab
-            ),
-
-            this.createTile(
-                2,
-                this.showTile2,
-                this.tile2ShowTitle,
-                this.tile2Title,
-                this.tile2ShowDescription,
-                this.tile2Description,
-                this.tile2ShowImage,
-                this.tile2Image,
-                this.tile2BackgroundColor,
-                this.tile2LinkUrl,
-                this.tile2OpenInNewTab
-            ),
-
-            this.createTile(
-                3,
-                this.showTile3,
-                this.tile3ShowTitle,
-                this.tile3Title,
-                this.tile3ShowDescription,
-                this.tile3Description,
-                this.tile3ShowImage,
-                this.tile3Image,
-                this.tile3BackgroundColor,
-                this.tile3LinkUrl,
-                this.tile3OpenInNewTab
-            ),
-
-            this.createTile(
-                4,
-                this.showTile4,
-                this.tile4ShowTitle,
-                this.tile4Title,
-                this.tile4ShowDescription,
-                this.tile4Description,
-                this.tile4ShowImage,
-                this.tile4Image,
-                this.tile4BackgroundColor,
-                this.tile4LinkUrl,
-                this.tile4OpenInNewTab
-            ),
-
-            this.createTile(
-                5,
-                this.showTile5,
-                this.tile5ShowTitle,
-                this.tile5Title,
-                this.tile5ShowDescription,
-                this.tile5Description,
-                this.tile5ShowImage,
-                this.tile5Image,
-                this.tile5BackgroundColor,
-                this.tile5LinkUrl,
-                this.tile5OpenInNewTab
-            ),
-
-            this.createTile(
-                6,
-                this.showTile6,
-                this.tile6ShowTitle,
-                this.tile6Title,
-                this.tile6ShowDescription,
-                this.tile6Description,
-                this.tile6ShowImage,
-                this.tile6Image,
-                this.tile6BackgroundColor,
-                this.tile6LinkUrl,
-                this.tile6OpenInNewTab
-            )
-        ];
-        
-    }
-
-    createTile(index, show, showTitle, title, showDescription, description, showImage, image, backgroundColor, linkUrl, openInNewTab) {
-        const imageUrl = this.cmsLink(image);
+    createTile(index, show, showTitle, title, showDescription, description, linkUrl, openInNewTab) {
 
         return {
             index,
@@ -245,12 +269,28 @@ export default class Tiles extends LightningElement {
             description,
             showTitle: showTitle && title,
             showDescription: showDescription && description,
-            imageStyle: this.getTileImageStyle(showImage, imageUrl, backgroundColor),
             class: linkUrl ? 'tile tile-clickable' : 'tile',
-            style: '',
+            imageClass: `tile-image tile-image-${index}`,
             click: () => this.navigate(linkUrl, openInNewTab),
             keydown: (event) => this.keydown(event, linkUrl, openInNewTab)
         };
+    }
+
+
+    cmsLink(cmsId) {
+        if (!cmsId || typeof cmsId !== 'string' || !cmsId.trim()) {
+            return null;
+        }
+
+        const base = this.communityBasePath || communityBasePath;
+
+        let link = `${base}/sfsites/c/cms/delivery/media/${cmsId}`;
+
+        if (link.includes('/login/')) {
+            link = link.replace('/login/', '/');
+        }
+
+        return link;
     }
 
 }

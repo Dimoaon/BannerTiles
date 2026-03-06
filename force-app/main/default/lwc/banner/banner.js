@@ -3,6 +3,8 @@ import communityBasePath from '@salesforce/community/basePath';
 
 export default class Banner extends LightningElement {
 
+    /* VARIABLES */
+
     @api title = null;
     @api subtitle = null;
 
@@ -22,48 +24,14 @@ export default class Banner extends LightningElement {
     @api titleFontSize = null;
     @api subtitleFontSize = null;
 
-    /* CMS HELPER */
+    isFirstRender = true;
 
-    cmsLink(cmsId) {
-        if (!cmsId || typeof cmsId !== 'string' || !cmsId.trim()) {
-            return null;
-        }
 
-        const base = this.communityBasePath || window.location.origin;
-
-        let link = `${base}/sfsites/c/cms/delivery/media/${cmsId}`;
-
-        if (link.includes('/login/')) {
-            link = link.replace('/login/', '/');
-        }
-
-        return link;
-    }
-
-    /* IMAGE URL */
+    /* GETTERS */
 
     get backgroundImageUrl() {
         return this.cmsLink(this.backgroundImage);
     }
-
-    /* BANNER STYLE */
-
-    get bannerStyle() {
-        let style = `background-color:${this.backgroundColor || '#f4f6f9'};`;
-
-        if (this.showBackgroundImage && this.backgroundImageUrl) {
-            style += `
-                background-image:url('${this.backgroundImageUrl}');
-                background-size:cover;
-                background-position:center;
-                background-repeat:no-repeat;
-            `;
-        }
-
-        return style;
-    }
-
-    /* VISIBILITY GETTERS */
 
     get getShowTitle() {
         return this.showTitle === true && this.title;
@@ -73,20 +41,69 @@ export default class Banner extends LightningElement {
         return this.showSubtitle === true && this.subtitle;
     }
 
-    /* TEXT STYLE */
 
-    get titleStyle() {
-        return `
-            color:${this.titleColor || '#000'};
-            font-size:${this.titleFontSize || '24px'};
-        `;
+    /* LIFECYCLES */
+
+    renderedCallback() {
+        if (this.isFirstRender) {
+            this.isFirstRender = false;
+            this.addCustomCssStyles();
+        }
     }
 
-    get subtitleStyle() {
-        return `
-            color:${this.subtitleColor || '#000'};
-            font-size:${this.subtitleFontSize || '16px'};
+
+    /* INIT METHODS */
+
+    addCustomCssStyles() {
+        const style = document.createElement('style');
+
+        const bannerBackground = this.showBackgroundImage && this.backgroundImageUrl
+            ? `
+                background-image:url('${this.backgroundImageUrl}');
+              `
+            : `background-color:${this.backgroundColor || '#f4f6f9'};`;
+
+        let customCssStyles = `
+            .banner {
+                ${bannerBackground}
+            }
+
+            .banner-title {
+                color: ${this.titleColor || '#000'};
+                font-size: ${this.titleFontSize || '1.5rem'};
+            }
+
+            .banner-subtitle {
+                color: ${this.subtitleColor || '#000'};
+                font-size: ${this.subtitleFontSize || '1rem'};
+            }
         `;
+
+        style.innerText = customCssStyles.replace(/ +(?= )|\n/g, '');
+
+        this.template
+            .querySelector('.custom-css-container')
+            .appendChild(style);
+
+    }
+
+
+    /* MAIN METHODS */
+
+    cmsLink(cmsId) {
+        if (!cmsId || typeof cmsId !== 'string' || !cmsId.trim()) {
+            return null;
+        }
+
+        const base = this.communityBasePath || communityBasePath;
+
+        let link = `${base}/sfsites/c/cms/delivery/media/${cmsId}`;
+
+        if (link.includes('/login/')) {
+            link = link.replace('/login/', '/');
+        }
+
+        return link;
     }
 
 }

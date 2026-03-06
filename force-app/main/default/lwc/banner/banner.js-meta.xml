@@ -10,17 +10,17 @@
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
             <property name="showTitle" type="Boolean" label="Show Title" default="true"/>
-            <property name="titleColor" type="Color" label="Title color" default="#000000"/>
-            <property name="titleFontSize" type="String" label="Title font size (e.g. 24px)" default="24px"/>
+            <property name="titleColor" type="Color" label="Title Color" default="#000000"/>
+            <property name="titleFontSize" type="String" label="Title Font Size (e.g. 1.5rem)" default="1.5rem"/>
             <property name="title" type="String" label="Title"/>
             <property name="showSubtitle" type="Boolean" label="Show Subtitle" default="true"/>
-            <property name="subtitleColor" type="Color" label="Subtitle color" default="#000000"/>
-            <property name="subtitleFontSize" type="String" label="Subtitle font size (e.g. 16px)" default="16px"/>
+            <property name="subtitleColor" type="Color" label="Subtitle Color" default="#000000"/>
+            <property name="subtitleFontSize" type="String" label="Subtitle Font Size (e.g. 1rem)" default="1rem"/>
             <property name="subtitle" type="String" label="Subtitle"/>
-            <property name="backgroundColor" type="Color" label="Background color"/>
-            <property name="showBackgroundImage" type="Boolean" label="Show background image" default="true"/>
-            <property name="backgroundImage" type="ContentReference" label="Background image from CMS" filter="cms_image"/>
-            <property name="communityBasePath" type="String" label="Community base path (optional)"/>
+            <property name="backgroundColor" type="Color" label="Background Color"/>
+            <property name="showBackgroundImage" type="Boolean" label="Show Background Image" default="true"/>
+            <property name="backgroundImage" type="ContentReference" label="Background Image From CMS" filter="cms_image"/>
+            <property name="communityBasePath" type="String" label="Community Base Path (Optional)"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

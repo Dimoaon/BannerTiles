@@ -1,13 +1,21 @@
 <template>
+    <div lwc:dom="manual" class="custom-css-container"></div>
+
     <div class="tiles-container">
         <div class="tiles-grid">
             <template for:each={tiles} for:item="tile">
 
                 <template lwc:if={tile.show}>
-                    <div key={tile.index} class={tile.class} style={tile.style} onclick={tile.click} onkeydown={tile.keydown} tabindex="0" role="link" aria-label="Open the link">
 
-                        <div class="tile-image" style={tile.imageStyle}>
-                        </div>
+                    <div key={tile.index}
+                         class={tile.class}
+                         onclick={tile.click}
+                         onkeydown={tile.keydown}
+                         tabindex="0"
+                         role="link"
+                         aria-label="Open the link">
+
+                        <div class={tile.imageClass}></div>
 
                         <template lwc:if={tile.showTitle}>
                             <div class="tile-title">
@@ -22,6 +30,7 @@
                         </template>
 
                     </div>
+
                 </template>
 
             </template>
