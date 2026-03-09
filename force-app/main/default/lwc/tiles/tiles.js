@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 import communityBasePath from '@salesforce/community/basePath';
 
 const LABELS = {
@@ -104,7 +104,7 @@ export default class Tiles extends LightningElement {
 
     /* INTERNAL VARIABLES */
 
-    isFirstRender = true;
+    @track isFirstRender = true;
     tileIds = this.createTileIds();
 
 
