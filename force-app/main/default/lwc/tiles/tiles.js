@@ -105,41 +105,18 @@ export default class Tiles extends LightningElement {
     /* INTERNAL VARIABLES */
 
     @track isFirstRender = true;
-    tileIds = this.createTileIds();
-
+    tiles = [];
 
     /* GETTERS */
-
-    get tiles() {
-        const tiles = [];
-
-        for (let index = 0; index < TILES_COUNT; index++) {
-            const tileNumber = index + 1;
-
-            tiles.push(
-                this.createTile(
-                    this.tileIds[index],
-                    this[`showTile${tileNumber}`],
-                    this[`tile${tileNumber}ShowTitle`],
-                    this[`tile${tileNumber}Title`],
-                    this[`tile${tileNumber}ShowDescription`],
-                    this[`tile${tileNumber}Description`],
-                    this[`tile${tileNumber}LinkUrl`],
-                    this[`tile${tileNumber}OpenInNewTab`]
-                )
-            );
-        }
-
-        return tiles;
-    }
 
 
     /* LIFECYCLES */
 
     renderedCallback() {
         if (this.isFirstRender) {
-            this.isFirstRender = false;
+            this.parseTiles();
             this.addCustomCssStyles();
+            this.isFirstRender = false;
         }
     }
 
@@ -150,28 +127,10 @@ export default class Tiles extends LightningElement {
         const style = document.createElement('style');
         let customCssStyles = '';
 
-        const tilesConfig = [
-            { id: this.tileIds[0], showImage: this.tile1ShowImage, image: this.tile1Image, color: this.tile1BackgroundColor },
-            { id: this.tileIds[1], showImage: this.tile2ShowImage, image: this.tile2Image, color: this.tile2BackgroundColor },
-            { id: this.tileIds[2], showImage: this.tile3ShowImage, image: this.tile3Image, color: this.tile3BackgroundColor },
-            { id: this.tileIds[3], showImage: this.tile4ShowImage, image: this.tile4Image, color: this.tile4BackgroundColor },
-            { id: this.tileIds[4], showImage: this.tile5ShowImage, image: this.tile5Image, color: this.tile5BackgroundColor },
-            { id: this.tileIds[5], showImage: this.tile6ShowImage, image: this.tile6Image, color: this.tile6BackgroundColor }
-        ];
-
-        tilesConfig.forEach(tile => {
-            const imageUrl = this.cmsLink(tile.image);
-            let background = `background-color:${tile.color || '#f4f6f9'};`;
-
-            if (tile.showImage && imageUrl) {
-                background += `
-                    background-image:url('${imageUrl}');
-                `;
-            }
-
+        this.tiles.forEach(tile => {
             customCssStyles += `
-                .tile-image-${tile.id} {
-                    ${background}
+                .tile-image-container-${tile.id} {
+                    background-color:${tile.backgroundColor || '#f4f6f9'};
                 }
                     
                 .tile-title {
@@ -193,6 +152,35 @@ export default class Tiles extends LightningElement {
             .appendChild(style);
     }
 
+
+    parseTiles() {
+        this.tiles = [];
+
+        for (let index = 0; index < TILES_COUNT; index++) {
+            let tileNumber = index + 1;
+            const showTile = this[`showTile${tileNumber}`];
+
+            if (!showTile) {
+                continue;
+            }
+
+            this.tiles.push(
+                this.createTile(
+                    this.generateId(),
+                    this[`tile${tileNumber}ShowTitle`],
+                    this[`tile${tileNumber}Title`],
+                    this[`tile${tileNumber}ShowImage`],
+                    this.cmsLink(this[`tile${tileNumber}Image`]),
+                    this[`tile${tileNumber}BackgroundColor`],
+                    this[`tile${tileNumber}ShowDescription`],
+                    this[`tile${tileNumber}Description`],
+                    this[`tile${tileNumber}LinkUrl`],
+                    this[`tile${tileNumber}OpenInNewTab`]
+                )
+            );
+        }
+    }
+    
 
     /* HANDLERS */
 
@@ -219,17 +207,19 @@ export default class Tiles extends LightningElement {
 
     /* MAIN METHODS */
 
-    createTile(id, show, showTitle, title, showDescription, description, linkUrl, openInNewTab) {
+    createTile(id, showTitle, title, showImage, imageUrl, backgroundColor, showDescription, description, linkUrl, openInNewTab) {
 
         return {
             id,
-            show,
             title,
             description,
+            backgroundColor,
             showTitle: showTitle && title,
+            showImage: showImage && imageUrl,
+            imageUrl,
+            imageContainerClass: `tile-image-container tile-image-container-${id}`,
             showDescription: showDescription && description,
             class: linkUrl ? 'tile tile-clickable' : 'tile',
-            imageClass: `tile-image tile-image-${id}`,
             ariaLabel: title ? `${this.LABELS.openLink}: ${title}` : this.LABELS.openLink,
             click: () => this.navigate(linkUrl, openInNewTab),
             keydown: (event) => this.keydown(event, linkUrl, openInNewTab)
@@ -253,15 +243,6 @@ export default class Tiles extends LightningElement {
         return link;
     }
 
-    createTileIds() {
-        const tileIds = [];
-
-        for (let index = 0; index < TILES_COUNT; index++) {
-            tileIds.push(this.generateId());
-        }
-
-        return tileIds;
-    }
 
     generateId() {
         return 'tile-' + Math.random().toString(36).substring(2, 9);

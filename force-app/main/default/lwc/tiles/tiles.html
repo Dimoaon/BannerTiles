@@ -4,34 +4,33 @@
     <div class="tiles-container">
         <div class="tiles-grid">
             <template for:each={tiles} for:item="tile">
+                <div key={tile.id}
+                     class={tile.class}
+                     onclick={tile.click}
+                     onkeydown={tile.keydown}
+                     tabindex="0"
+                     role="link"
+                     aria-label={tile.ariaLabel}>
 
-                <template lwc:if={tile.show}>
-
-                    <div key={tile.id}
-                         class={tile.class}
-                         onclick={tile.click}
-                         onkeydown={tile.keydown}
-                         tabindex="0"
-                         role="link"
-                         aria-label={tile.ariaLabel}>
-
-                        <div class={tile.imageClass}></div>
-
-                        <template lwc:if={tile.showTitle}>
-                            <div class="tile-title">
-                                {tile.title}
-                            </div>
+                    <div class={tile.imageContainerClass}>
+                        <template lwc:if={tile.showImage}>
+                            <img class="tile-image" src={tile.imageUrl}/>
                         </template>
-
-                        <template lwc:if={tile.showDescription}>
-                            <div class="tile-description">
-                                {tile.description}
-                            </div>
-                        </template>
-
                     </div>
 
-                </template>
+                    <template lwc:if={tile.showTitle}>
+                        <div class="tile-title">
+                            {tile.title}
+                        </div>
+                    </template>
+
+                    <template lwc:if={tile.showDescription}>
+                        <div class="tile-description">
+                            {tile.description}
+                        </div>
+                    </template>
+
+                </div>
 
             </template>
         </div>
