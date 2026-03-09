@@ -2,7 +2,7 @@
     margin: 0 auto;
     padding: 2.5rem 1.25rem;
     
-    max-width: 75rem;
+    max-width: var(--dxp-s-section-columns-max-width);
 }
 
 /* GRID */
@@ -49,16 +49,17 @@
 /* IMAGE */
 
 .tile-image-container {
-    width: 100%;
-    height: 11.25rem;
     overflow: hidden;
+
+    height: 11.25rem;
+    width: 100%;
 }
 
 .tile-image {
-    display: block;
+    object-fit: cover;
+    
     width: 100%;
     height: 100%;
-    object-fit: cover;
 }
 
 /* TEXT */

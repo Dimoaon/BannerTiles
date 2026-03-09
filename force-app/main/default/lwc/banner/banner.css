@@ -20,7 +20,7 @@
     
     text-align: left;
 
-    max-width: 75rem;
+    max-width: var(--dxp-s-section-columns-max-width);
 }
 
 .banner-title {
