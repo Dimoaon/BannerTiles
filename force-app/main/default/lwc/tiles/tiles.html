@@ -18,20 +18,21 @@
                         </template>
                     </div>
 
-                    <template lwc:if={tile.showTitle}>
-                        <div class="tile-title">
-                            {tile.title}
-                        </div>
-                    </template>
+                    <div class="tile-information">
+                        <template lwc:if={tile.showTitle}>
+                            <div class="tile-title">
+                                {tile.title}
+                            </div>
+                        </template>
 
-                    <template lwc:if={tile.showDescription}>
-                        <div class="tile-description">
-                            {tile.description}
-                        </div>
-                    </template>
+                        <template lwc:if={tile.showDescription}>
+                            <div class="tile-description">
+                                {tile.description}
+                            </div>
+                        </template>
+                    </div>
 
                 </div>
-
             </template>
         </div>
     </div>

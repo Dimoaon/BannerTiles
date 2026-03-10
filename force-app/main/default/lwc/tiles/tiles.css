@@ -64,9 +64,15 @@
 
 /* TEXT */
 
+.tile-information {
+    padding: 1rem;
+}
+
+.tile-information > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
 .tile-title {
-    padding: 1rem 1rem 0.5rem 1rem;
-    
     word-break: break-word;
     overflow-wrap: anywhere;
     
@@ -74,15 +80,13 @@
 }
 
 .tile-description {
-    padding: 0 1rem 1rem 1rem;
-
     word-break: break-word;
     overflow-wrap: anywhere;
 }
 
 /* TABLET */
 
-@media (max-width: 1024px) {
+@media (max-width: 1023.98px) {
 
     .tiles-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -100,7 +104,7 @@
 
 /* MOBILE */
 
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
 
     .tiles-grid {
         grid-template-columns: 1fr;

@@ -158,9 +158,8 @@ export default class Tiles extends LightningElement {
 
         for (let index = 0; index < TILES_COUNT; index++) {
             let tileNumber = index + 1;
-            const showTile = this[`showTile${tileNumber}`];
 
-            if (!showTile) {
+            if (!this[`showTile${tileNumber}`]) {
                 continue;
             }
 
